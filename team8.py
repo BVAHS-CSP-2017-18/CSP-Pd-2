@@ -7,8 +7,8 @@
 ####
 
 ghosts = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+strategy_name = 'sneaky strategy'
+strategy_description = 'Betray every time'
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -36,8 +36,6 @@ def test_move(my_history, their_history, my_score, their_score, result):
     '''
     real_result = move(my_history, their_history, my_score, their_score)
     if real_result == result:
-        return True
-    else:
         print("move(" +
             ", ".join(["'"+my_history+"'", "'"+their_history+"'",
                        str(my_score), str(their_score)])+
