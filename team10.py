@@ -9,14 +9,15 @@
 team_name = 'Riley Ott' # Only 10 chars displayed.
 strategy_name = 'Best Strategy'
 strategy_description = 'picks random first but will know if the same thing is picked every time'
+
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
-    
     Make my move.
     Returns 'c' or 'b'. 
     '''
+    from random import randint
 
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
     # their_history: a string of the same length as history, possibly empty. 
@@ -25,15 +26,35 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
+    strategy=0
+    plays=len(my_history)
+    if plays==0:
+        if randint(0,1)==0:
+            return 'c'
+        else:
+            return 'b'
+            
+    if 'b' not in their_history:
+        strategy=1
     
-    return 'c'
+    if 'c' not in their_history:
+        strategy=2
+    
+    if strategy==1:
+        return 'c'
+    
+    if strategy==2:
+        return 'b'
+                
+    if strategy==0:
+        return 'b'
 
-    
+
 def test_move(my_history, their_history, my_score, their_score, result):
-    '''calls move(my_history, their_history, my_score, their_score)
-    from this module. Prints error if return value != result.
-    Returns True or False, dpending on whether result was as expected.
-    '''
+    #calls move(my_history, their_history, my_score, their_score)
+    #from this module. Prints error if return value != result.
+    #Returns True or False, dpending on whether result was as expected.
+    
     real_result = move(my_history, their_history, my_score, their_score)
     if real_result == result:
         return True
@@ -66,3 +87,4 @@ if __name__ == '__main__':
               my_score=0, 
               their_score=0,
               result='b')             
+              
