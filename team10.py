@@ -26,7 +26,7 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
-    strategy='always c'
+    strategy=0
     plays=len(my_history)
     if plays==0:
         if randint(0,1)==0:
@@ -35,45 +35,25 @@ def move(my_history, their_history, my_score, their_score):
             return 'b'
             
     if 'b' not in their_history:
-        strategy='always c'
+        strategy=1
     
     if 'c' not in their_history:
-        strategy='always b'
-        
-    if their_history[-1] != their_history[-2]:
-        strategy='alternate'
+        strategy=2
     
-    if len(their_history)==4 and 'cbbc' in their_history:
-        strategy='alternate cbbc'
+    if strategy==1:
+        return 'c'
     
-    if len(their_history)==4 and 'bccb' in their_history:
-        strategy='alternate bccb'
-    
-    if len(their_history)==4 and 'bbbc'in their_history:
-        strategy='alternate bbbc'
-        
-    if len(their_history)==4 and 'cccb' in their_history:
-        strategy='alternate cccb'
-    
-    if len(their_history)==4 and 'bbcc' in their_history:
-        strategy='alternate bbcc'
-        
-    if len(their_history)==4 and 'ccbb' in their_history:
-        strategy='alternate ccbb'
-    
-    if len(their_history)==6 and 'bbbccc' in their_history:
-        strategy='alternate bbbccc'
-        
-    if len(their_history)==4 and 'cccbbb' in their_history:
-        strategy='alternate cccbbb'
+    if strategy==2:
+        return 'b'
+                
+    if strategy==0:
+        return 'b'
 
 
-
-'''
 def test_move(my_history, their_history, my_score, their_score, result):
-    calls move(my_history, their_history, my_score, their_score)
-    from this module. Prints error if return value != result.
-    Returns True or False, dpending on whether result was as expected.
+    #calls move(my_history, their_history, my_score, their_score)
+    #from this module. Prints error if return value != result.
+    #Returns True or False, dpending on whether result was as expected.
     
     real_result = move(my_history, their_history, my_score, their_score)
     if real_result == result:
@@ -107,4 +87,4 @@ if __name__ == '__main__':
               my_score=0, 
               their_score=0,
               result='b')             
-              '''
+              
