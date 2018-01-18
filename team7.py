@@ -31,10 +31,10 @@ def move(my_history, their_history, my_score, their_score):
 ####
 
 team_name = 'Panthers' # Only 10 chars displayed.
-strategy_name = 'Collude but retaliate'
+strategy_name = 'Alternate strategies if betrayed first round'
 strategy_description = '''\
-Collude first round. Collude, except in a round after getting 
-a severe punishment.'''
+Collude first round, Betray second round if betrayed in the first round.
+Then alternate afterwards'''
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -53,7 +53,11 @@ def move(my_history, their_history, my_score, their_score):
     # Decide whether to return 'c' or 'b'.
     
     return 'c'
-
+    if my_history[-1]=='c' and their_history[-1]=='b':
+        return 'b'
+    while 'b' in their_history:
+        return 'c'
+        return 'b'
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
